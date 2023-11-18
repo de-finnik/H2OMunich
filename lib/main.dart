@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackatum23/fountains.dart';
+import 'package:hackatum23/map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: const Color.fromARGB(255, 212, 245, 254),
+          scaffoldBackgroundColor: Color.fromARGB(255, 220, 171, 65),
           fontFamily: GoogleFonts.raleway().fontFamily),
       home: const MyHomePage(title: 'Wasser für München'),
     );
@@ -40,30 +38,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Fountain>? _fountains;
   LatLng? _user;
-  Widget buildMap() {
-    MapController controller = MapController();
-    return FlutterMap(
-      mapController: controller,
-      options: const MapOptions(
-        initialCenter: LatLng(48.137648, 11.574628),
-        initialZoom: 13,
-        minZoom: 10,
-        maxZoom: 19,
-      ),
-      children: [
-        TileLayer(
-          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          userAgentPackageName: 'com.example.app',
-        ),
-        _fountains == null
-            ? const CircularProgressIndicator()
-            : MarkerLayer(
-                markers: _fountains!
-                    .map((e) => Marker(point: e.latLng, child: e.icon))
-                    .toList(),
-              ),
-      ],
-    );
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -84,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
             const Center(
               child: Padding(
@@ -95,72 +75,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Stack(
-              children: [
-                SizedBox(
-                  height: 400,
-                  child: buildMap(),
-                ),
-                Center(
-                  child: Card(
-                    clipBehavior: Clip.hardEdge,
-                    child: InkWell(
-                      splashColor: Colors.blue.withAlpha(30),
-                      onTap: () async {
-                        //TODO open navigation
-                        if (_user == null || _fountains == null) {
-                          return;
-                        }
-                        navigateToFountain(
-                            findNearestFountain(_user!, _fountains!));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.water_drop_outlined),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15, right: 15),
-                              child: _fountains == null || _user == null
-                                  ? const CircularProgressIndicator()
-                                  : Column(
-                                      children: [
-                                        Text(findNearestFountain(
-                                                _user!, _fountains!)
-                                            .name),
-                                        Text(
-                                            "${distance(_user!, findNearestFountain(_user!, _fountains!).latLng).round()}m")
-                                      ],
-                                    ),
-                            ),
-                            const Column(
-                              children: [
-                                Icon(Icons.turn_right),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
+            buildMap(_user, _fountains),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        const BottomNavigationBarItem(
-          label: "Home",
-          icon: Icon(Icons.home),
-        ),
-        const BottomNavigationBarItem(
-          label: "Info",
-          icon: Icon(Icons.info),
-        ),
-      ]),
+      /*bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color.fromARGB(255, 37, 38, 82),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            label: "Home",
+            icon: Icon(Icons.home),
+          ),
+          BottomNavigationBarItem(
+            label: "Info",
+            icon: Icon(Icons.info),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),*/
     );
   }
 }
