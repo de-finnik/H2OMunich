@@ -1,16 +1,24 @@
 # hackatum23
 
-A new Flutter project.
+(Devpost)[https://devpost.com/software/wasser-fur-munchen]
 
-## Getting Started
+## Inspiration
+In the midst of Munich's summer heat, the lack of a convenient way to find public hydration options inspired us to create a solution for people struggling to stay cool and hydrated.
 
-This project is a starting point for a Flutter application.
+## What it does
+Our app revolutionises the way people cope with the heat by guiding users to the nearest available drinking fountains and hydration spots across Munich, ensuring easy access to water sources in scorching temperatures.
 
-A few resources to get you started if this is your first Flutter project:
+## How we built it
+We developed the app using a combination of a drinking fountain dataset from the city of Munich and other data from [refill germany](https://refill-deutschland.de/) and others to access and display the closest water refill stations in Munich. We used Flutter to build the app, which allowed us to create a cross-platform application.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Challenges we faced
+Overcoming the challenges of data accuracy, integrating real-time updates and ensuring a seamless user experience were among the hurdles we overcame while building the app.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Achievements we're proud of
+Successfully creating a user-friendly app that can cope with the extreme weather situations that are unfortunately part of our lives now and will become even more pronounced in the future.
+
+## What we learned
+Through this project we gained insights into user-centred app design, building cross-platform applications with Flutter and learned that hackaTUM is really fun :)
+
+## What's next for oasis
+Expanding our database of water sources, improving the app's usability, and fostering partnerships for greater coverage in Munich's neighbourhoods.
