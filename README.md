@@ -1,6 +1,6 @@
 # hackatum23
 
-(Devpost)[https://devpost.com/software/wasser-fur-munchen]
+[Devpost](https://devpost.com/software/wasser-fur-munchen)
 
 ## Inspiration
 In the midst of Munich's summer heat, the lack of a convenient way to find public hydration options inspired us to create a solution for people struggling to stay cool and hydrated.
