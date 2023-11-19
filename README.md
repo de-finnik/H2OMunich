@@ -21,4 +21,4 @@ Successfully creating a user-friendly app that can cope with the extreme weather
 Through this project we gained insights into user-centred app design, building cross-platform applications with Flutter and learned that hackaTUM is really fun :)
 
 ## What's next for oasis
-Expanding our database of water sources, improving the app's usability, and fostering partnerships for greater coverage in Munich's neighbourhoods.
+Expanding our database of water sources, improving the app's usability, and fostering partnerships for greater coverage in Munich's neighbourhoods. We also built a  machine-trained model to predict the water potability so that new drinking fountains can be built on top of this data. We also used explainable AI techniques to make it as user-friendly and transparent as possible. [Link to jupyter notebook](https://colab.research.google.com/drive/1mV_mxZ-x0rp70WUtJKT-5_Q1Ckz8HRWU?usp=sharing)

@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
+          dividerTheme: DividerThemeData(color: Colors.transparent),
           scaffoldBackgroundColor: const Color.fromARGB(255, 220, 171, 65),
           fontFamily: GoogleFonts.raleway().fontFamily),
       home: const MyHomePage(title: 'Fountain Finder'),
@@ -61,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Center(
               child: Padding(
-                padding: EdgeInsets.all(2.0),
+                padding: EdgeInsets.all(5.0),
                 child: Image(
                   image: AssetImage('assets/logo.png'),
                   height: 75,
@@ -70,8 +71,38 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             buildMap(_user, _fountains),
             Spacer(),
-            Text("Stay hydrated!"),
-            Text("To contribute or learn more please click on the logos:"),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 90,
+                  child: Row(
+                    children: [
+                      Icon(Icons.local_drink_outlined),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Stay hydrated!",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 300,
+                              child: Text(
+                                "To contribute or learn more please click on the logos below!",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Spacer(),
           ],
         ),
@@ -86,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   openLink("hack.tum.de");
                 },
-                child: Image.asset('assets/tum.png', height: 50),
+                child: Image.asset('assets/tum.png', height: 30),
                 style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                       Color.fromARGB(255, 220, 171, 65)),
@@ -97,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   openLink("muenchen.de");
                 },
-                child: Image.asset('assets/lhm.png', height: 50),
+                child: Image.asset('assets/lhm.png', height: 40),
                 style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                       Color.fromARGB(255, 220, 171, 65)),
@@ -108,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   openLink("refill-deutschland.de");
                 },
-                child: Image.asset('assets/refill.png', height: 50),
+                child: Image.asset('assets/refill.png', height: 30),
                 style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
                       Color.fromARGB(255, 220, 171, 65)),
