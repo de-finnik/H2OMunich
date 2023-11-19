@@ -75,9 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
-                  height: 90,
+                  //height: 90,
                   child: Row(
                     children: [
+                      Spacer(),
                       Icon(Icons.local_drink_outlined),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -98,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                       ),
+                      Spacer()
                     ],
                   ),
                 ),

@@ -8,7 +8,7 @@ Widget buildMap(LatLng? user, List<Fountain>? fountains) {
     children: [
       SizedBox(
         height: 400,
-        child: _buildFlutterMap(fountains),
+        child: _buildFlutterMap(fountains, user),
       ),
       Center(
         child: Card(
@@ -54,7 +54,7 @@ Widget buildMap(LatLng? user, List<Fountain>? fountains) {
   );
 }
 
-Widget _buildFlutterMap(List<Fountain>? fountains) {
+Widget _buildFlutterMap(List<Fountain>? fountains, LatLng? user) {
   MapController controller = MapController();
   return FlutterMap(
     mapController: controller,
