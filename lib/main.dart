@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'oasis',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Color.fromARGB(255, 220, 171, 65),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 220, 171, 65),
           fontFamily: GoogleFonts.raleway().fontFamily),
-      home: const MyHomePage(title: 'Wasser für München'),
+      home: const MyHomePage(title: 'Fountain Finder'),
     );
   }
 }
@@ -38,13 +38,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Fountain>? _fountains;
   LatLng? _user;
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const Center(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(2.0),
                 child: Image(
                   image: AssetImage('assets/logo.png'),
                   height: 75,
@@ -76,24 +69,56 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             buildMap(_user, _fountains),
+            Spacer(),
+            Text("Stay hydrated!"),
+            Text("To contribute or learn more please click on the logos:"),
+            Spacer(),
           ],
         ),
       ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color.fromARGB(255, 37, 38, 82),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home),
+      persistentFooterButtons: <Widget>[
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Spacer(),
+              TextButton(
+                onPressed: () {
+                  openLink("hack.tum.de");
+                },
+                child: Image.asset('assets/tum.png', height: 50),
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 220, 171, 65)),
+                ),
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () {
+                  openLink("muenchen.de");
+                },
+                child: Image.asset('assets/lhm.png', height: 50),
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 220, 171, 65)),
+                ),
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () {
+                  openLink("refill-deutschland.de");
+                },
+                child: Image.asset('assets/refill.png', height: 50),
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(255, 220, 171, 65)),
+                ),
+              ),
+              Spacer(),
+            ],
           ),
-          BottomNavigationBarItem(
-            label: "Info",
-            icon: Icon(Icons.info),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),*/
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
@@ -48,7 +47,7 @@ Future<List<Fountain>> fetchFountains() async {
           navigateToLatLng(latLng);
         },
         icon: const Icon(
-          Icons.water_drop,
+          Icons.water_drop_outlined,
           size: 20,
           color: Colors.blue,
         ),
@@ -64,7 +63,6 @@ Fountain findNearestFountain(LatLng user, List<Fountain> fountains) {
   fountains.sort((f1, f2) =>
       distance(user, f1.latLng).compareTo(distance(user, f2.latLng)));
   return fountains.first;
-  // TODO
 }
 
 double distance(LatLng one, LatLng two) {
@@ -84,5 +82,13 @@ void navigateToLatLng(LatLng latLng) async {
     await launchUrl(Uri.parse(googleUrl));
   } else {
     throw "Couldn't launch Map";
+  }
+}
+
+void openLink(String url) async {
+  if (await canLaunchUrl(Uri.parse("https://${url}"))) {
+    await launchUrl(Uri.parse("https://${url}"));
+  } else {
+    throw "Couldn't open URL";
   }
 }

@@ -19,7 +19,7 @@ Widget buildMap(LatLng? user, List<Fountain>? fountains) {
               if (user == null || fountains == null) {
                 return;
               }
-              navigateToFountain(findNearestFountain(user!, fountains!));
+              navigateToFountain(findNearestFountain(user, fountains));
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -33,9 +33,9 @@ Widget buildMap(LatLng? user, List<Fountain>? fountains) {
                         ? const CircularProgressIndicator()
                         : Column(
                             children: [
-                              Text(findNearestFountain(user!, fountains!).name),
+                              Text(findNearestFountain(user, fountains).name),
                               Text(
-                                  "${distance(user!, findNearestFountain(user!, fountains!).latLng).round()}m")
+                                  "${distance(user, findNearestFountain(user, fountains).latLng).round()}m")
                             ],
                           ),
                   ),
@@ -60,8 +60,8 @@ Widget _buildFlutterMap(List<Fountain>? fountains) {
     mapController: controller,
     options: const MapOptions(
       initialCenter: LatLng(48.137648, 11.574628),
-      initialZoom: 13,
-      minZoom: 10,
+      initialZoom: 12,
+      minZoom: 11,
       maxZoom: 19,
     ),
     children: [
@@ -72,7 +72,7 @@ Widget _buildFlutterMap(List<Fountain>? fountains) {
       fountains == null
           ? const CircularProgressIndicator()
           : MarkerLayer(
-              markers: fountains!
+              markers: fountains
                   .map((e) => Marker(point: e.latLng, child: e.icon))
                   .toList(),
             ),
